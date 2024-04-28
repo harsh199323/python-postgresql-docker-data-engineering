@@ -1,0 +1,37 @@
+#version: '3.8'
+
+services:
+    postgres:
+        image: postgres:latest  # Use the latest official PostgreSQL image
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: Harsh@1234 # Set your desired password
+            POSTGRES_USER: postgres        # Default PostgreSQL user
+            POSTGRES_DB: sales      # Name of the database to create
+        ports:
+            - "5432:5432"  # Map container port 5432 to host port 5432 (default)
+        volumes:
+            - db-data:/var/lib/postgresql/data # Persist data volume
+    pgadmin:
+        image: dpage/pgadmin4:latest
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com
+            PGADMIN_DEFAULT_PASSWORD: Harsh@1234  
+            PGDATA: /var/lib/postgresql/data
+        ports:
+            - "80:80"  # Map container port 8080 to host port 8080 (default)
+        volumes:
+            - pgadmindata:/var/lib/pgadmin:rw  # Persist data volume with read/write access
+    jupyter:
+        build: . #build img in CWD
+        ports:
+            - "8888:8888"
+        volumes:
+            - ./:/app  # Mount current directory ('.') as '/app' in the container
+            - jupyter_data:/home/jovy/.jupyter  # Optional volume to persist notebook data
+        command: ["jupyter", "notebook", "--ip='0.0.0.0'", "--port=8888", "--no-browser", "--allow-root"]
+
+volumes:
+    db-data:  # Define volume outside services section
+    pgadmindata: 
+    jupyter_data:

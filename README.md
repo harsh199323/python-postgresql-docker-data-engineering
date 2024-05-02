@@ -5,14 +5,14 @@ This project demonstrates data cleaning, analysis, and processing related to sal
 **Steps:**
 
 1. **Data Cleaning and Analysis:**
-   - `data_analysis.ipynb` (not provided, but you can implement it based on the prompt)
+   - `data_analysis.ipynb`
       - Read `sales_data.csv`.
       - Clean the sales data in `sales_data.csv`.
       - Analyzes the relationship between sale price and quantity.
       - Saves the cleaned data as `sales_data_cleaned.csv`.
 
 2. **Docker Compose Setup:**
-   - `docker-compose.yml` (not provided, but you can create it based on the prompt)
+   - `docker-compose.yml` 
       - Defines services for running PostgreSQL and pgAdmin for database management.
 
 3. **Data Transfer to Database:**
